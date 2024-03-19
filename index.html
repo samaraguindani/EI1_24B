@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+</head>
+<body>
+    <div class="geral">
+        <div class="imagem__logo">
+            <img src="images/logo.png" alt="imagem de um onibus">
+        </div>
+        <div class="login">
+                <div class="login__titulo">
+                    <p class="login-titulo">Bem-vindo</p>
+                    <p class="login-titulo-crie">Crie sua conta</p>
+                
+                    <label for="text" class="login-label label-nome">Nome:</label>
+                    <input type="text" id="text" class="login-input" placeholder="Seu Nome" onfocus="this.value='';"/>
+                    <label for="email" class="login-label">E-mail:</label>
+                    <input type="email" id="email" class="login-input" placeholder="exemplo@gmail.com" onfocus="this.value='';"/>
+                    <button type="button" id="button-cad" class="botoes-entrar">Cadastrar</button>
+
+                </div>
+                
+                <div class="login__input">
+                    <label for="date" class="login-label label-nascimento">Data de Nascimento:</label>
+                    <input type="date" id="date" class="login-input">
+                    <label for="cpf" class="login-label">CPF:</label>
+                    <input type="number" id="cpf" class="login-input" placeholder="12345678900">
+                    <label for="tele" class="login-label">Telefone:</label>
+                    <input type="number" id="tele" class="login-input" placeholder="00999999999">
+                </div>
+        </div>
+    </div>
+
+    <div class="tabela">
+        <label for="text" class="label-id">Digite o ID que deseja alterar ou remover:</label>
+        <input type="text" id="textId" class="input-id"/>
+        <div class="botoes__tabela">
+            <button type="button" id="button-entrar" class="botoes-editar">Editar</button>
+            <button type="button" id="button-remove" class="botoes-editar">Remover</button>
+        </div>
+       <div class="tabela__container">
+        <table class="table">
+            <thead class="thead">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Data Nasc.</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">CPF</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
+       </div>
+        
+    </div>
+
+    <script src="./js/main.js" defer></script>
+</body>
+</html>
