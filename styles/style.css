@@ -1,0 +1,63 @@
+:root{
+    --font-montserrart: "Montserrat", sans-serif;
+    --font-tenor: "Tenor Sans", sans-serif;
+
+    --bege: #FAF6F1;
+    --bege-escuro: #f8d8b1;
+    --preto: #000000;
+}
+
+body{
+    background-color: var(--bege);
+    color: var(--preto);
+}
+
+#calendar{
+    width: 500px;
+    height: 500px;
+    margin-left: 15px;
+}
+
+.agenda{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.adicionar{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.adicionar-tarefa{
+    font-size: 35px;
+    font-family: var(--font-tenor);
+    padding-bottom: 10px;
+    padding-top: 60px;
+}
+
+.add__input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.add-input{
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 2px solid var(--bege-escuro);
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+    padding-left: 5px;
+    outline: none;
+}
+
+.add-input:hover{
+    background-color: #f8d8b12c;
+}
