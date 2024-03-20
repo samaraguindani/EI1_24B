@@ -1,6 +1,9 @@
 <?php
 // Executar uma consulta SQL
-$query = "SELECT * FROM sua_tabela";
+$query = "
+SELECT agenda.id, agenda.titulo, agenda.descricao, agenda.data, categorias.nome AS categoria 
+FROM agenda 
+INNER JOIN categorias ON agenda.categoria_id = categorias.id;";
 $result = pg_query($conn, $query);
 
 // Verificar se a consulta foi bem sucedida

@@ -61,3 +61,12 @@ body{
 .add-input:hover{
     background-color: #f8d8b12c;
 }
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+.agenda-img{
+    margin-top: 40px;
+}
