@@ -36,17 +36,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('date').value = '';
     }
 
-    $(document).ready(function(){
-        $('#salvarEvento').click(function(){
-            var titulo = $('#titulo').val();
-            var descricao = $('#descricao').val();
-            var data = $('#date').val();
-            var categoria_id = $('#categoria').val(); // Agora estamos pegando o valor do ID da categoria
-    
-            salvarEvento(titulo, descricao, data, categoria_id);
-        });
+
+    $('#salvarEvento').click(function(){
+        var titulo = $('#titulo').val();
+        var descricao = $('#descricao').val();
+        var data = $('#date').val();
+        var categoria_id = $('#categoria').val(); // Agora estamos pegando o valor do ID da categoria
+
+        salvarEvento(titulo, descricao, data, categoria_id);
     });
-    
+        
     function salvarEvento(titulo, descricao, data, categoria_id) {
         $.ajax({
             url: 'db_connection.php',
@@ -62,5 +61,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
 });
