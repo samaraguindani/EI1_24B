@@ -1,71 +1,54 @@
 <?php
-// Incluir o arquivo de conexão com o banco de dados
 require_once('db_connection.php');
 
-// Função para criar uma tabela
-function criarTabela() {
-    global $database;
-    
-    $query_agenda = "CREATE TABLE IF NOT EXISTS agenda (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo TEXT NOT NULL,
-        descricao TEXT,
-        data DATE NOT NULL,
-        categoria_id INTEGER
-    )";
-
-    // Executar a query para criar a tabela agenda
-    $database->exec($query_agenda);
-
-    $query_categorias = "CREATE TABLE IF NOT EXISTS categorias (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT UNIQUE
-    )";
-
-    // Executar a query para criar a tabela categorias
-    $database->exec($query_categorias);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Inserir dados na agenda
+    inserirAgenda();
 }
-// Função para inserir dados na tabela categorias
-function inserirCategorias() {
-    global $database;
-
-    // Query para inserir dados na tabela categorias
-    $query = "INSERT OR IGNORE INTO categorias (nome) VALUES 
-                ('Trabalho'),
-                ('Estudo'),
-                ('Lazer')";
-
-    // Executar a query para inserir dados na tabela categorias
-    $database->exec($query);
-}
-
-// Função para inserir dados na tabela agenda
 function inserirAgenda() {
     global $database;
 
-    // Query para inserir dados na tabela agenda
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['descricao'];
+    $data = $_POST['data'];
+    $categoria_id = $_POST['categoria_id'];
+
     $query = "INSERT INTO agenda (titulo, descricao, data, categoria_id) 
-                VALUES ('Reunião de Projeto', 'Discutir o progresso do projeto X', '2024-03-20', 1)";
+              VALUES (:titulo, :descricao, :data, :categoria_id)";
 
-    // Executar a query para inserir dados na tabela agenda
-    $database->exec($query);
+    // Preparar a declaração SQL
+    $stmt = $database->prepare($query);
+
+    // Vincular os parâmetros
+    $stmt->bindValue(':titulo', $titulo, SQLITE3_TEXT);
+    $stmt->bindValue(':descricao', $descricao, SQLITE3_TEXT);
+    $stmt->bindValue(':data', $data, SQLITE3_TEXT);
+    $stmt->bindValue(':categoria_id', $categoria_id, SQLITE3_INTEGER);
+
+    $resultado = $stmt->execute();
+
+    if ($resultado) {
+        echo "Dados inseridos com sucesso na tabela agenda.";
+    } else {
+        echo "Erro ao inserir dados na tabela agenda.";
+    }
 }
-
-// Função para recuperar os dados da agenda com categorias
 function recuperarDadosAgenda() {
     global $database;
 
-    // Query para recuperar os dados da agenda com categorias
-    $query = "SELECT agenda.id, agenda.titulo, agenda.descricao, agenda.data, categorias.nome AS categoria 
-                FROM agenda 
-                INNER JOIN categorias ON agenda.categoria_id = categorias.id";
+    $query = "SELECT /*agenda.id,*/ agenda.titulo, agenda.descricao, agenda.data, categorias.nome AS categoria 
+              FROM agenda 
+              INNER JOIN categorias ON agenda.categoria_id = categorias.id";
 
-    // Executar a query e obter resultados
     $resultado = $database->query($query);
-
-    // Retornar resultados
     return $resultado;
 }
+
+// criarTabela();
+// inserirCategorias();
+// inserirAgenda();
+// recuperarDadosAgenda();
+// echo "teste5";
 
 // // Função para atualizar dados
 // function atualizarDados() {

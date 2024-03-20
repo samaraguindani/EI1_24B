@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -30,22 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInputs();
     });
 
+    $('#salvarEvento').click(function(){
+        var titulo = $('#titulo').val();
+        var descricao = $('#descricao').val();
+        var data = $('#date').val();
+        var categoria_id = $('#categoria').val();
+
+        salvarEvento(titulo, descricao, data, categoria_id);
+    });
+        
     function clearInputs() {
         document.getElementById('titulo').value = '';
         document.getElementById('descricao').value = '';
         document.getElementById('date').value = '';
     }
-
-
-    $('#salvarEvento').click(function(){
-        var titulo = $('#titulo').val();
-        var descricao = $('#descricao').val();
-        var data = $('#date').val();
-        var categoria_id = $('#categoria').val(); // Agora estamos pegando o valor do ID da categoria
-
-        salvarEvento(titulo, descricao, data, categoria_id);
-    });
-        
+    
     function salvarEvento(titulo, descricao, data, categoria_id) {
         $.ajax({
             url: 'db_connection.php',
@@ -54,11 +54,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 titulo: titulo,
                 descricao: descricao,
                 data: data,
-                categoria_id: categoria_id // Agora estamos enviando o ID da categoria
+                categoria_id: categoria_id
             },
             success: function(response){
                 alert(response);
             }
         });
     }
+
+    // function enviarDados() {
+    //     var formulario = document.getElementById("meuFormulario");
+    //     var formData = new FormData(formulario);
+    
+    //     fetch('verifica_dados.php', {
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Erro ao enviar dados');
+    //         }
+    //         return response.text();
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //         // Faça o que quiser com a resposta do servidor
+    //     })
+    //     .catch(error => {
+    //         console.error('Erro:', error);
+    //     });
+    // }
+    
 });
