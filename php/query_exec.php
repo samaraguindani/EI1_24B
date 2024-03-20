@@ -36,7 +36,7 @@ function inserirAgenda() {
 function recuperarDadosAgenda() {
     global $database;
 
-    $query = "SELECT /*agenda.id,*/ agenda.titulo, agenda.descricao, agenda.data, categorias.nome AS categoria 
+    $query = "SELECT agenda.id, agenda.titulo, agenda.descricao, agenda.data, categorias.nome AS categoria 
               FROM agenda 
               INNER JOIN categorias ON agenda.categoria_id = categorias.id";
 
